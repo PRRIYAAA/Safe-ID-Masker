@@ -40,8 +40,10 @@ Clone the repository:
 ```bash
 git clone https://github.com/yourusername/safe-id-masker.git
 cd safe-id-masker
-
+---
+```
 ## Configuration (.env)
+```
 # OpenAI API key
 OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxx
 
@@ -50,11 +52,11 @@ TESSERACT_PATH=C:\Program Files\Tesseract-OCR\tesseract.exe
 
 # Folder to save masked files
 UPLOAD_FOLDER=static/masked
-
 ```
+---
 
 ## Architecture
-
+```
 User Upload
      │
      ▼
@@ -71,8 +73,8 @@ User Upload
      │
      ▼
  Save & Download Masked File
-
 ```
+
 ## Usage
 
 ### Web Interface
@@ -82,7 +84,8 @@ Start the Flask server:
 ```bash
 python app.py
 
-CLI Example (Python)
+```
+## CLI Example (Python)
 
 ```
 from pytesseract import image_to_data
@@ -99,8 +102,8 @@ print(data['text'])  # List of detected words
 print(data['left'], data['top'], data['width'], data['height'])
 
 ```
-GPT PII Detection Example
-
+## GPT PII Detection Example
+```
 Request Payload Sent to GPT:
 
 {
@@ -110,8 +113,9 @@ Request Payload Sent to GPT:
     {"role": "user", "content": "Here is extracted text: 'John Doe, 123 Main St, 555-1234'. Return PII."}
   ]
 }
+```
 ## Masking PII with OpenCV
-
+```
 import cv2
 
 for i, word in enumerate(data["text"]):
@@ -120,12 +124,12 @@ for i, word in enumerate(data["text"]):
         cv2.rectangle(img, (x, y), (x + w, y + h), (0, 0, 0), -1)
 
 cv2.imwrite("masked_invoice.png", img)
-
+```
 ## PDF Handling
-
+```
 from pdf2image import convert_from_path
 
 pages = convert_from_path('document.pdf', dpi=300)
 for i, page in enumerate(pages):
     page.save(f"page_{i}.png", "PNG")
-
+```
