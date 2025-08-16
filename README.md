@@ -73,14 +73,59 @@ User Upload
  Save & Download Masked File
 
 ```
-## Web Interface
+## Usage
+
+### Web Interface
+
+Start the Flask server:
+
+```bash
 python app.py
+
+CLI Example (Python)
+
 ```
-1. Open a browser at http://127.0.0.1:5000/ to:
+from pytesseract import image_to_data
+import pytesseract
+import cv2
 
-2. Upload a document (PNG, JPG, PDF)
+# Load image
+img = cv2.imread("invoice1.png")
 
-3. Preview masked output
+# Extract OCR text with bounding boxes
+data = pytesseract.image_to_data(img, output_type=pytesseract.Output.DICT)
 
-4.Download the masked file
+print(data['text'])  # List of detected words
+print(data['left'], data['top'], data['width'], data['height'])
+
+```
+GPT PII Detection Example
+
+Request Payload Sent to GPT:
+
+{
+  "model": "gpt-4o-mini",
+  "messages": [
+    {"role": "system", "content": "You are a PII detection tool. Return only JSON list of strings."},
+    {"role": "user", "content": "Here is extracted text: 'John Doe, 123 Main St, 555-1234'. Return PII."}
+  ]
+}
+## Masking PII with OpenCV
+
+import cv2
+
+for i, word in enumerate(data["text"]):
+    if word in pii_words:
+        x, y, w, h = data['left'][i], data['top'][i], data['width'][i], data['height'][i]
+        cv2.rectangle(img, (x, y), (x + w, y + h), (0, 0, 0), -1)
+
+cv2.imwrite("masked_invoice.png", img)
+
+## PDF Handling
+
+from pdf2image import convert_from_path
+
+pages = convert_from_path('document.pdf', dpi=300)
+for i, page in enumerate(pages):
+    page.save(f"page_{i}.png", "PNG")
 
