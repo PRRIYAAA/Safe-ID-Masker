@@ -72,3 +72,15 @@ User Upload
      ▼
  Save & Download Masked File
 
+```
+## Web Interface
+python app.py
+```
+1. Open a browser at http://127.0.0.1:5000/ to:
+
+2. Upload a document (PNG, JPG, PDF)
+
+3. Preview masked output
+
+4.Download the masked file
+
