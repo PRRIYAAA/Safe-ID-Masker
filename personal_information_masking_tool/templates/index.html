@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SafeID-Masker</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <nav>
+    <div class="logo">SafeID-Masker</div>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#upload">Upload</a></li>
+      <li><a href="#masked">Masked Doc</a></li>
+      <li><a href="#contact">Contact Us</a></li>
+    </ul>
+  </nav>
+
+  <section id="home">
+    <h1>Protecting Privacy. Instantly.</h1>
+    <p class="gradient-text">Why Choose SafeID-Masker?</p>
+    <p class="desc">Built with cutting-edge technology to ensure your privacy is protected while maintaining document usability.</p>
+
+    <div class="features">
+      <div class="card"><h3>Advanced Privacy Protection</h3><p>Automatically detects and masks SSNs, names, addresses, and other sensitive data with AI precision.</p></div>
+      <div class="card"><h3>Lightning Fast Processing</h3><p>Process your ID cards in seconds with our optimized algorithms and efficient image processing.</p></div>
+      <div class="card"><h3>Smart Detection</h3><p>Our AI recognizes various ID formats and adapts to different layouts and document types.</p></div>
+    </div>
+    <div class="features">
+      <div class="card"><h3>100% Secure</h3><p>All processing happens locally in your browser. Your images never leave your device.</p></div>
+      <div class="card"><h3>High-Quality Output</h3><p>Download masked images in their original resolution with professional-grade masking.</p></div>
+      <div class="card"><h3>Works Everywhere</h3><p>Responsive design that works perfectly on desktop, tablet, and mobile devices.</p></div>
+    </div>
+  </section>
+
+  <section id="upload">
+    <h2>Upload Document</h2>
+<form action="/" method="POST" enctype="multipart/form-data">
+  <input type="file" name="image" />
+  <button type="submit">Upload</button>
+</form>
+
+
+  </section>
+
+<section id="masked">
+  <h2>Masked Document</h2>
+  {% if filename %}
+    <div class="masked-container">
+      <p>Your masked document is ready:</p>
+
+      <div class="image-wrapper">
+        <img src="{{ url_for('static', filename='masked/' + filename) }}"
+             alt="Masked Image"
+             class="masked-image">
+      </div>
+
+      <a href="{{ url_for('static', filename='masked/' + filename) }}"
+         download="{{ filename }}"
+         class="btn-download">
+         ⬇ Download Masked Image
+      </a>
+    </div>
+  {% else %}
+    <p>No document has been masked yet. Please upload one above.</p>
+  {% endif %}
+</section>
+
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <h3>Team: Wolf Among Us</h3>
+    <div class="team">
+      <div class="member">
+        <img src="{{ url_for('static', filename='images/Nura_passport_pic.jpg') }}" alt="Arun Nehru S">
+
+        <p>Arun Nehru S</p>
+      </div>
+      <div class="member">
+        <img src="{{ url_for('static', filename='images/Harini S.jpg') }}" alt="Harini S">
+        <p>Harini S</p>
+      </div>
+      <div class="member">
+        <img src="{{ url_for('static', filename='images/Priyadharshini K.jpg') }}" alt="Priyadharshini S">
+        <p>Priyadharshini S</p>
+      </div>
+      <div class="member">
+        <img src="{{ url_for('static', filename='images/Nithiya passport pic.jpg') }}" alt="Nithiya B">
+        <p>Nithiya B</p>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
+
