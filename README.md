@@ -4,7 +4,8 @@
 
 ---
 
-![Masked Document](masked_invoice.png)
+<img src="masked_invoice.png" alt="Masked Document" width="400" height="300">
+
 
 ## Features
 
