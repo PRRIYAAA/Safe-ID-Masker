@@ -4,6 +4,8 @@
 
 ---
 
+![Masked Document](images/masked_invoice.png)
+
 ## Features
 
 - **OCR Text Extraction:** Uses Tesseract to extract text and bounding box coordinates from images or PDF pages.
