@@ -4,7 +4,7 @@
 
 ---
 
-<img src="masked_invoice.png" alt="Masked Document" width="400" height="300">
+<img src="masked_invoice.png" alt="Masked Document" width="400" height="400">
 
 
 ## Features
