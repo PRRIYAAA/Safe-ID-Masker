@@ -4,7 +4,7 @@
 
 ---
 
-![Masked Document](images/masked_invoice.png)
+![Masked Document](masked_invoice.png)
 
 ## Features
 
